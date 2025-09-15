@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal profile page of Govind">
+    <title>Govind's DevSpace</title>
+    <link rel="icon" href="img/profile.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="#" class="nav-logo">
+            <img src="img/Govind_logo.png" alt="Govind's Logo" onerror="this.src='https://placehold.co/80x80/cccccc/333333?text=GC'">
+        </a>
+    </div>
+    <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+    <div class="nav-menu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#my-skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <div id="dark-mode-toggle" class="dark-mode-toggle">
+            <i class="fas fa-moon"></i>
+        </div>
+    </div>
+</nav>
+
+<header>
+    <div class="header-grid" id="home">
+        <div class="left-grid">
+            <h2>Hello, It's Me</h2>
+            <h1>Govind Choudhari</h1>
+            <h2>And I'm a <span class="about-me"></span></h2>
+            <p>Aspiring Full Stack Developer passionate about crafting efficient web applications, currently pursuing a Bachelor's in IT at Atharva College of Engineering, Mumbai.</p>
+            <button onclick="window.location.href='https://drive.google.com/file/d/1ZOndFWavZCjAUPw2vORFpK3EgHGGagm6/view?usp=drive_link'">Download CV</button>
+        </div>
+        <div class="right-grid">
+            <!-- Profile picture with hover effect -->
+            <div class="profile-container">
+                <div class="profile-background"></div>
+                <img src="img/Govind.png" alt="Govind pic" class="profile-img" onerror="this.src='https://placehold.co/400x400/cccccc/333333?text=Profile'">
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="about" class="section-container">
+    <div class="content-grid">
+        <h1>About Me</h1>
+        <p>
+            Driven and aspiring full-stack web developer with a deep interest in cutting-edge technologies. My goal is to master web development and transition into data analytics, combining coding and analytical skills to solve complex problems.
+            My curiosity and problem-solving mindset fuel my passion to contribute to innovative solutions. I thrive in dynamic environments and am always eager to collaborate and create impactful digital experiences. With a moderate technological foundation, 
+            I continually expand my expertise through hands-on projects and self-driven learning. I'm a fast learner, highly adaptable to new tools and environments, and stay current with industry trends.
+        </p>
+    </div>
+</section>
+
+<section id="my-skills" class="section-container">
+    <h1>My Skills</h1>
+    <div class="skills-grid">
+        <div class="technical-grid">
+            <h2 class="technical-grid-heading">Technical Skills</h2>
+            <div class="skills-card-grid">
+                <div class="skill-card">
+                    <img src="img/html.png" alt="HTML5 logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=HTML'">
+                    <span class="skill-name">HTML</span>
+                </div>
+                <div class="skill-card">
+                    <img src="img/css.png" alt="CSS3 logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=CSS'">
+                    <span class="skill-name">CSS</span>
+                </div>
+                <div class="skill-card">
+                    <img src="img/javascript.png" alt="JavaScript logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=JS'">
+                    <span class="skill-name">JavaScript</span>
+                </div>
+                <div class="skill-card">
+                    <img src="img/reactJS.png" alt="ReactJS logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=React'">
+                    <span class="skill-name">ReactJS</span>
+                </div>
+                <div class="skill-card">
+                    <img src="img/python.png" alt="Python logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=Python'">
+                    <span class="skill-name">Python</span>
+                </div>
+                <div class="skill-card">
+                    <img src="img/nodeJS.png" alt="NodeJS logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=Node'">
+                    <span class="skill-name">NodeJS</span>
+                </div>
+                <div class="skill-card">
+                    <img src="img/express-js.png" alt="ExpressJS logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=Express'">
+                    <span class="skill-name">ExpressJS</span>
+                </div>
+
+                <div class="skill-card">
+                    <img src="img/Flask.png" alt="Flask APIs" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=FlaskAPI'">
+                    <span class="skill-name">Flask APIs</span>
+                </div>
+
+                <div class="skill-card">
+                    <img src="img/mongodb.png" alt="MongoDB logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=Mongo'">
+                    <span class="skill-name">MongoDB</span>
+                </div>
+                <div class="skill-card">
+                    <img src="img/mysql.png" alt="MySQL logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=MySQL'">
+                    <span class="skill-name">MySQL</span>
+                </div>
+                
+                <div class="skill-card">
+                    <img src="img/firebase.png" alt="Firebase" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=Firebase'">
+                    <span class="skill-name">Firebase</span>
+                </div> 
+
+                <div class="skill-card">
+                    <img src="img/git.png" alt="Git logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=Git'">
+                    <span class="skill-name">Git</span>
+                </div> 
+                <div class="skill-card">
+                    <img src="img/github.png" alt="GitHub logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=GitHub'">
+                    <span class="skill-name">GitHub</span>
+                </div>  
+                
+                <div class="skill-card">
+                    <img src="img/tableau.png" alt="GitHub logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=Tableau'">
+                    <span class="skill-name">Tableau</span>
+                </div>  
+                <div class="skill-card">
+                    <img src="img/Canva.png" alt="Canva logo" class="skill-icon" onerror="this.src='https://placehold.co/50x50/cccccc/333333?text=Canva'">
+                    <span class="skill-name">Canva</span>
+                </div>    
+            </div>
+        </div>
+
+        <div class="soft-skills-container">
+            <h2 class="soft-grid-heading">Soft Skills</h2>
+            <div class="skills-card-grid">
+                <div class="skill-card">
+                    <i class="fas fa-search-plus skill-icon-fa"></i>
+                    <span class="skill-name">Problem Solving</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-users skill-icon-fa"></i>
+                    <span class="skill-name">Teamwork</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-comments skill-icon-fa"></i>
+                    <span class="skill-name">Communication</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-clock skill-icon-fa"></i>
+                    <span class="skill-name">Time Management</span>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-sync-alt skill-icon-fa"></i>
+                    <span class="skill-name">Adaptability</span>
+                </div>
+
+                <div class="skill-card">
+                    <i class="fas fa-lightbulb skill-icon-fa"></i>
+                    <span class="skill-name">Creativity</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="certifications" class="section-container">
+    <h1>Certifications</h1>
+    <div class="cert-grid">
+        <div class="cert-card" data-full-img="img/Hackxplore.png">
+            <img src="img/Hackxplore.png" alt="Secured Top 10 rank" class="cert-img">
+            <h3 class="cert-title">HackXplore Certificate</h3>
+        </div>
+        <div class="cert-card" data-full-img="img/Hack2skill-Certificate.png">
+            <img src="img/Hack2skill-Certificate.png" alt="Agentic AI Day Certificate" class="cert-img">
+            <h3 class="cert-title">Google Cloud Agentic AI Day</h3>
+        </div>
+        <div class="cert-card" data-full-img="img/AI_Agents.png">
+            <img src="img/AI_Agents.png" alt="" class="cert-img">
+            <h3 class="cert-title">AI Agents Hackathon</h3>
+        </div>
+        <div class="cert-card" data-full-img="img/Hack-A-Tone.png">
+            <img src="img/Hack-A-Tone.png" alt="" class="cert-img">
+            <h3 class="cert-title">Hack-A-Tone Certificate</h3>
+        </div>
+        <div class="cert-card" data-full-img="img/Deloitte.png">
+            <img src="img/Deloitte.png" alt="" class="cert-img">
+            <h3 class="cert-title">Data Analytics Certificate</h3>
+        </div>
+        <div class="cert-card" data-full-img="img/STTP_Govind.jpg">
+            <img src="img/STTP_Govind.jpg" alt="" class="cert-img">
+            <h3 class="cert-title">STTP Completion Certificate</h3>
+        </div>
+    </div>
+</section>
+
+<div id="image-modal" class="modal">
+    <span class="modal-close">&times;</span>
+    <img class="modal-content" id="full-image">
+</div>
+
+<section id="projects" class="section-container">
+    <div class="projects-heading">
+        <h1>My Projects</h1>
+        <p>Have a look at my works</p>
+    </div>
+    <div class="project-thumbnail">
+        <div class="thumbnail-content">
+            <img src="img/Trekking-web-project.png" alt="Project 1" onerror="this.src='https://placehold.co/300x200/e0e0e0/000000?text=Project+1'">
+            <h3>Trekking Website with Chatbot</h3>
+            <a href="https://github.com/Govind-553/treking-web" target="_blank" class="btn">Know More</a>
+        </div>
+
+        <div class="thumbnail-content">
+            <img src="img/Login-signup-with-serverside.png" alt="Project 2" onerror="this.src='https://placehold.co/300x200/e0e0e0/000000?text=Project+2'">
+            <h3>ReactJS Login-Signup with Server</h3>
+            <a href="https://github.com/Govind-553/Login-Signup-using-ReactJS-" target="_blank" class="btn">Know More</a>
+        </div>
+
+        <div class="thumbnail-content">
+            <img src="img/Cartify-shopping-page-using-Razorpay.png" alt="Project 3" onerror="this.src='https://placehold.co/300x200/e0e0e0/000000?text=Project+3'">
+            <h3>Shopping Page with Razorpay Integration</h3>
+            <a href="https://github.com/Govind-553/Razorpay_Node_Payment" target="_blank" class="btn">Know More</a>
+        </div>
+
+        <div class="thumbnail-content">
+            <img src="img/weather-app.png" alt="Project 4" onerror="this.src='https://placehold.co/300x200/e0e0e0/000000?text=Project+4'">
+            <h3>Weather App</h3>
+            <a href="https://github.com/Govind-553/weather-app" target="_blank" class="btn">Know More</a>
+        </div>
+
+        <div class="thumbnail-content">
+            <img src="img/menu-builder-using-RC-tree.jpg" alt="Project 5" onerror="this.src='https://placehold.co/300x200/e0e0e0/000000?text=Project+5'">
+            <h3>Menu Builder using RC-tree</h3>
+            <a href="https://github.com/Govind-553/Menu-Builder-using-RC-Tree" target="_blank" class="btn">Know More</a>
+        </div>
+
+        <div class="thumbnail-content">
+            <img src="img/image-search-engine.png" alt="Project 6" onerror="this.src='https://placehold.co/300x200/e0e0e0/000000?text=Project+6'">
+            <h3>Image Search Engine using JavaScript</h3>
+            <a href="https://github.com/Govind-553/image-search-engine" target="_blank" class="btn">Know More</a>
+        </div>
+    </div>
+</section>
+<hr> 
+
+<section id="contact" class="section-container">
+    <h1>Contact Me</h1>
+    <p class="form-message"></p>
+    <!-- 
+        IMPORTANT: To make this form work, you need to set up a Formspree endpoint.
+        1. Go to https://formspree.io/
+        2. Create a new form and enter your email: choudharygovind553@gmail.com
+        3. Copy the unique form ID (e.g., 'f/abcdefg').
+        4. Replace `{your_form_id}` in the action attribute below with your form ID.
+        This will allow Formspree to handle the email sending for you.
+    -->
+    <form action="https://formspree.io/f/{your_form_id}" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter Your Name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter Your Email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" placeholder="Enter Your Message" required></textarea>
+
+        <button type="submit">Send</button>
+    </form>
+</section>
+
+<section class="connect-section">
+    <h1><i style="margin-right: 10px;" class="fas fa-link"></i> Let’s Connect!</h1>
+    <a href="mailto:choudharygovind553@gmail.com" class="icon-link email-icon"><i class="fas fa-envelope"></i></a> 
+    <a href="https://www.linkedin.com/in/govind-choudhari-967960285" target="_blank" class="icon-link linkedin-icon"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/Govind-553" target="_blank" class="icon-link github-icon"><i class="fab fa-github"></i></a>
+</section>
+<hr>           
+
+<footer>
+    <p>© 2024 Govind Choudhari. All rights reserved.</p>
+</footer>
+</body>
+</html>
