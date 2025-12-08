@@ -51,8 +51,7 @@ function toggleMenu() {
     }
 }
 
-
-// Event listener for Dark Mode toggle, form submission, and image modal
+// Event listener for Dark Mode toggle, form submission, image modal, and scroll animations
 document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
@@ -66,72 +65,86 @@ document.addEventListener('DOMContentLoaded', function() {
     const certCards = document.querySelectorAll('.cert-card');
 
     // Dark Mode Toggle
-    darkModeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        const isDarkMode = body.classList.contains('dark-mode');
-        darkModeToggle.querySelector('i').classList.toggle('fa-sun', isDarkMode);
-        darkModeToggle.querySelector('i').classList.toggle('fa-moon', !isDarkMode);
-    });
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-sun', isDarkMode);
+                icon.classList.toggle('fa-moon', !isDarkMode);
+            }
+        });
+    }
 
     // Handle form submission (using Formspree)
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const form = e.target;
-        const data = new FormData(form);
-        const action = form.action;
-        
-        try {
-            const response = await fetch(action, {
-                method: 'POST',
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const form = e.target;
+            const data = new FormData(form);
+            const action = form.action;
+            
+            try {
+                const response = await fetch(action, {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
 
-            if (response.ok) {
-                formMessage.textContent = "Thank you for your message! It has been sent successfully.";
-                formMessage.style.display = 'block';
-                contactForm.reset();
-            } else {
-                formMessage.textContent = "There was an error sending your message. Please try again.";
+                if (response.ok) {
+                    formMessage.textContent = "Thank you for your message! It has been sent successfully.";
+                    formMessage.style.display = 'block';
+                    formMessage.style.backgroundColor = '#00ffc8';
+                    formMessage.style.color = '#0d1117';
+                    contactForm.reset();
+                } else {
+                    formMessage.textContent = "There was an error sending your message. Please try again.";
+                    formMessage.style.backgroundColor = '#f8d7da';
+                    formMessage.style.color = '#721c24';
+                    formMessage.style.display = 'block';
+                }
+            } catch (error) {
+                formMessage.textContent = "Network error. Please check your connection.";
                 formMessage.style.backgroundColor = '#f8d7da';
                 formMessage.style.color = '#721c24';
                 formMessage.style.display = 'block';
             }
-        } catch (error) {
-            formMessage.textContent = "Network error. Please check your connection.";
-            formMessage.style.backgroundColor = '#f8d7da';
-            formMessage.style.color = '#721c24';
-            formMessage.style.display = 'block';
-        }
-    });
+        });
+    }
 
     // Image modal functionality
-    certCards.forEach(card => {
-        card.addEventListener('click', () => {
-            modal.style.display = "block";
-            modalImg.src = card.dataset.fullImg;
+    if (modal && modalImg && modalClose) {
+        certCards.forEach(card => {
+            card.addEventListener('click', () => {
+                modal.style.display = "block";
+                modalImg.src = card.dataset.fullImg;
+            });
         });
-    });
 
-    modalClose.addEventListener('click', () => {
-        modal.style.display = "none";
-    });
-
-    window.addEventListener('click', (event) => {
-        if (event.target === modal) {
+        modalClose.addEventListener('click', () => {
             modal.style.display = "none";
-        }
-    });
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    }
 
     // Scroll functionality for navigation links
     const scrollLinks = document.querySelectorAll('a[href^="#"]');
     scrollLinks.forEach(link => {
         link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (!href || href === '#') return;
+
             e.preventDefault();
-            const targetId = link.getAttribute('href').slice(1);
+            const targetId = href.slice(1);
             const targetElement = document.getElementById(targetId);
 
             if (targetElement) {
@@ -143,6 +156,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
+    });
+
+    // Scroll-reveal animations using IntersectionObserver
+    const revealItems = document.querySelectorAll(
+        '.section-container, .education-card, .experience-card, .skill-card, .cert-card, .thumbnail-content'
+    );
+
+    const observerOptions = {
+        threshold: 0.12
+    };
+
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-visible');
+                entry.target.classList.remove('reveal');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    revealItems.forEach(el => {
+        el.classList.add('reveal');
+        revealObserver.observe(el);
     });
 
     // Start the typing animation on page load
