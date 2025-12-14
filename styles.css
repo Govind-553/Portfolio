@@ -28,6 +28,11 @@
         border-color 0.3s ease;
 }
 
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 /* Body */
 body {
     background: radial-gradient(circle at top, #151b26 0%, var(--background-light) 45%, #05070a 100%);
@@ -221,14 +226,21 @@ hr {
     .nav-menu {
         flex-direction: column;
         width: 100%;
-        display: none;
         background-color: var(--card-bg-light);
-        padding-bottom: 1rem;
-        padding-top: 0.5rem;
+        gap: 0;
+        overflow: hidden;
+        max-height: 0; 
+        opacity: 0;
+        transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5); 
+        border-radius: 0 0 16px 16px; 
     }
 
     .nav-menu.active {
-        display: flex;
+        max-height: 500px; 
+        opacity: 1;
+        padding-bottom: 1rem;
+        padding-top: 0.5rem;
     }
 
     .nav-menu a,
@@ -236,12 +248,27 @@ hr {
         width: 100%;
         text-align: center;
         margin: 0;
-        padding: 10px 0;
+        padding: 15px 0;
         border-radius: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .nav-menu a:last-child {
+        border-bottom: none;
+    }
+
+    .nav-menu a:hover {
+        background-color: rgba(0, 255, 200, 0.05);
     }
 
     .nav-menu a::after {
-        bottom: 0;
+        display: none; /* Remove underline effect on mobile */
+    }
+
+    /* Adjust header spacing on mobile */
+    .header-grid {
+        margin-top: 80px; /* Reduced from 100px default */
+        padding: 20px 10px; /* Reduced side padding */
     }
 }
 
@@ -304,7 +331,7 @@ hr {
 }
 
 .left-grid h2 {
-    font-size: 1.8rem;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
     font-weight: 500;
     color: var(--text-light);
     display: flex;
@@ -315,7 +342,7 @@ hr {
 }
 
 .left-grid h1 {
-    font-size: 4.5rem;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     line-height: 1.1;
     margin: 10px 0;
     background: linear-gradient(90deg, #ffffff, var(--primary-color));
@@ -323,6 +350,7 @@ hr {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 30px rgba(0, 255, 200, 0.3);
+    word-wrap: break-word;
 }
 
 .left-grid h2 span {
@@ -351,8 +379,9 @@ hr {
 
 .profile-container {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 100%; 
+    max-width: 300px;
+    aspect-ratio: 1; 
     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0 0 30px var(--primary-color), 0 0 60px var(--secondary-color);
@@ -629,7 +658,7 @@ hr {
 
 .experience-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Reduced from 290px */
     gap: 30px;
     margin-top: 2rem;
 }
@@ -833,7 +862,7 @@ hr {
 /* 📜 CERTIFICATIONS */
 .cert-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Reduced from 280px */
     gap: 2rem;
     margin-top: 2rem;
 }
@@ -909,7 +938,7 @@ hr {
 
 .project-thumbnail {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Reduced from 280px */
     gap: 30px;
     margin-top: 25px;
 }
@@ -1263,15 +1292,30 @@ footer p {
 
 @media (max-width: 768px) {
     #contact.section-container {
-        margin: 40px 16px;
-        padding: 2rem 1.4rem;
+        margin: 40px 10px; /* Reduced margin */
+        padding: 2rem 1rem; /* Reduced padding */
     }
 
     #contact form {
-        padding: 1.4rem 1.2rem;
+        padding: 1.4rem 1rem;
+    }
+
+    .section-container {
+         padding: 1.5rem; 
+         width: auto; 
+         margin-left: 1rem;
+         margin-right: 1rem;
+         border-radius: 12px;
+    }
+
+    .experience-grid,
+    .cert-grid,
+    .project-thumbnail {
+        grid-template-columns: 1fr;
     }
 
     .connect-section {
         margin-top: 25px;
+        padding: 0 1rem;
     }
 }

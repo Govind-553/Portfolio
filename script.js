@@ -51,6 +51,19 @@ function toggleMenu() {
     }
 }
 
+// Close mobile menu when a link is clicked
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        const navMenu = document.querySelector('.nav-menu');
+        const menuToggle = document.querySelector('.nav-toggle');
+        
+        if (navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            menuToggle.textContent = "☰";
+        }
+    });
+});
+
 // Event listener for Dark Mode toggle, form submission, image modal, and scroll animations
 document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('dark-mode-toggle');
