@@ -931,39 +931,15 @@ hr {
     font-weight: 600;
 }
 
-.thumbnail-content .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-image: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: 500;
-    border-radius: 8px;
-    margin-top: auto;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 16px rgba(255, 32, 121, 0.7);
+.project-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 5px;
 }
 
-.thumbnail-content .btn::after {
-    content: '\2192';
-    position: absolute;
-    right: -20px;
-    opacity: 0;
-    transition: right 0.3s ease, opacity 0.3s ease;
-}
 
-.thumbnail-content .btn:hover {
-    transform: scale(1.05);
-    padding-right: 28px;
-    box-shadow: 0 0 22px rgba(0, 255, 200, 0.7);
-}
-
-.thumbnail-content .btn:hover::after {
-    right: 10px;
-    opacity: 1;
-}
 
 #contact form {
     width: 100%;
