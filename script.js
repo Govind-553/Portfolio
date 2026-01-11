@@ -149,6 +149,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Toggle active state for experience cards (Glassmorphism & Button)
+    const experienceCards = document.querySelectorAll('.experience-card');
+    experienceCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            // Prevent triggering when clicking the link itself if it bubbles up (though link is usually on top)
+            if (e.target.closest('.project-demo-btn')) return;
+
+            // Remove active class from all other cards
+            experienceCards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('active');
+                }
+            });
+
+            // Toggle active class on the clicked card
+            card.classList.toggle('active');
+        });
+    });
+
     // Scroll functionality for navigation links
     const scrollLinks = document.querySelectorAll('a[href^="#"]');
     scrollLinks.forEach(link => {

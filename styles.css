@@ -508,6 +508,7 @@ hr {
     max-width: 1050px;
     color: var(--text-light);
     opacity: 0.92;
+    text-align: justify;
 }
 
 #about .content-grid p::first-line {
@@ -656,25 +657,88 @@ hr {
     position: relative;
 }
 
-.experience-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Reduced from 290px */
-    gap: 30px;
-    margin-top: 2rem;
+#experience {
+    position: relative;
+    padding: 2rem 0; 
 }
 
+.experience-timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+/* Central Line */
+.experience-timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--border-color-light); 
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px; 
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 255, 200, 0.2);
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: transparent;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+/* Connectors (Dots) */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: -10px; /* On the timeline line */
+    background-color: var(--card-bg-light);
+    border: 3px solid var(--primary-color);
+    top: 25px; /* Align with card top approx */
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:hover::after {
+    transform: scale(1.3);
+    background-color: var(--primary-color);
+}
+
+/* Left side */
+.timeline-item.left {
+    left: 0;
+}
+
+/* Right side */
+.timeline-item.right {
+    left: 50%;
+}
+
+/* Fix right connector dot */
+.timeline-item.right::after {
+    left: -10px;
+}
+
+/* Card Styling reuse with adjustments */
 .experience-card {
     position: relative;
     background: radial-gradient(circle at top left, rgba(255, 32, 121, 0.1), var(--card-bg-dark));
-    padding: 1.9rem 1.6rem;
+    padding: 1.8rem;
     border-radius: 18px;
     border: 1px solid var(--border-color-light);
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
     overflow: hidden;
-    transform-origin: center;
+    transition: transform 0.3s ease;
 }
 
-/* Accent gradient bar */
+/* Accent Header Bar same as before */
 .experience-card::before {
     content: "";
     position: absolute;
@@ -688,49 +752,172 @@ hr {
 }
 
 .experience-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 0 22px rgba(255, 32, 121, 0.5), 0 0 34px rgba(0, 255, 200, 0.35);
+    transform: translateY(-5px);
     border-color: var(--primary-color);
-    background: radial-gradient(circle at bottom right, rgba(0, 255, 200, 0.12), var(--card-bg-dark));
+    box-shadow: 0 0 30px rgba(0, 255, 200, 0.2);
 }
 
+/* Arrow pointers */
+.left .experience-card::after {
+    content: " ";
+    position: absolute;
+    top: 25px;
+    right: -10px; /* Point to right */
+    border-width: 10px 0 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent var(--border-color-light);
+    /* For gradient bg it's tricky, let's just match the border color usually or keep it simple */
+}
+
+.right .experience-card::after {
+    content: " ";
+    position: absolute;
+    top: 25px;
+    left: -10px; /* Point to left */
+    border-width: 10px 10px 10px 0;
+    border-style: solid;
+    border-color: transparent var(--border-color-light) transparent transparent;
+}
+
+
+/* Media Query for Mobile Timeline (< 768px) */
+@media (max-width: 768px) {
+    /* Move line to left */
+    .experience-timeline::after {
+        left: 31px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    
+    .timeline-item.left,
+    .timeline-item.right {
+        left: 0;
+    }
+
+    /* Adjust dots */
+    .timeline-item::after { 
+        left: 21px; /* Center on the line at 31px (31 - 10 = 21) */
+        right: auto;
+    }
+    
+    .timeline-item.right::after {
+        left: 21px; 
+    }
+
+    /* Adjust arrows - remove or fix */
+    .left .experience-card::after,
+    .right .experience-card::after {
+        display: none; /* Simplify on mobile */
+    }
+}
+
+/* Keep inner content styles */
 .experience-title {
-    font-size: 1.35rem;
+    font-size: 1.15rem;
     font-weight: 600;
+    line-height: 1.3;
     color: var(--primary-color);
     margin-bottom: 0.25rem;
 }
 
 .experience-company {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--secondary-color);
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
 }
 
-/* Duration chip */
 .experience-duration {
     display: inline-block;
-    font-size: 0.78rem;
+    width: fit-content;
+    font-size: 0.75rem;
     color: var(--text-light);
-    padding: 4px 10px;
+    padding: 4px 12px;
     border-radius: 999px;
-    background: rgba(0, 255, 200, 0.08);
-    border: 1px solid rgba(0, 255, 200, 0.4);
-    margin: 0.4rem 0 0.8rem 0;
+    background: rgba(0, 255, 200, 0.05); 
+    border: 1px solid rgba(0, 255, 200, 0.3);
+    margin: 0.5rem 0 1rem 0;
+}
+
+/* Active State (Glassmorphism on Click) */
+.experience-card.active {
+    background: rgba(22, 27, 34, 0.9); 
+    box-shadow: 0 0 30px rgba(0, 255, 200, 0.25);
+    transform: scale(1.02);
+    z-index: 10;
+}
+
+/* Blur content except the button and the top gradient bar */
+.experience-card.active > *:not(.project-demo-btn) {
+    filter: blur(4px);
+    opacity: 0.6;
+    cursor: pointer;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.experience-card.active::before {
+    opacity: 1;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    filter: none; 
+}
+
+/* Project Demo Button (Centered overlay) */
+.project-demo-btn {
+    display: none; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9); 
+    padding: 12px 28px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    z-index: 20;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.experience-card.active .project-demo-btn {
+    display: inline-flex;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+
+.project-demo-btn:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.6);
 }
 
 .experience-details {
     list-style: none;
     padding-left: 0;
+    transition: filter 0.3s ease;
 }
 
 .experience-details li {
     position: relative;
     padding-left: 1.5rem;
     margin-bottom: 0.5rem;
-    color: var(--text-light);
-    font-size: 0.95rem;
+    color: #e0e0e0;
+    font-size: 0.85rem; 
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 0.6rem;
+}
+
+.experience-details li:last-child {
+    margin-bottom: 0;
 }
 
 .experience-details li::before {
@@ -762,12 +949,12 @@ hr {
 }
 
 @media (min-width: 900px) {
+    /* Previously enforcing row, now verified we want column always */
     .skills-grid {
-        flex-direction: row;
-        align-items: flex-start;
+        /* Already column by default, but let's be explicit if needed or just remove */
+        flex-direction: column;
     }
-    .technical-grid { flex: 2; }
-    .soft-skills-container { flex: 1.2; }
+    /* technical-grid and soft-skills-container widths are handled by full width default */
 }
 
 .technical-grid,
@@ -786,13 +973,27 @@ hr {
 }
 
 .skills-card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+
+/* 768px onwards: 3 skills */
+@media (min-width: 768px) {
+    .skills-card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .skills-card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
 }
 
 .skill-card {
-    flex: 0 1 115px;
     background-color: var(--card-bg-light);
     padding: 0.85rem 0.6rem;
     border-radius: 12px;
@@ -805,7 +1006,24 @@ hr {
     transition: 0.25s ease;
     position: relative;
     overflow: hidden;
+    height: 100%;
+    justify-content: center;
 }
+
+/* Ensure container takes full width when stacked */
+.technical-grid,
+.soft-skills-container {
+    width: 100%;
+}
+
+/* Remove side-by-side on desktop to keep vertical stack */
+@media (min-width: 900px) {
+    .skills-grid {
+        flex-direction: column;
+    }
+}
+
+
 
 .skill-card::before {
     content: "";
@@ -884,15 +1102,19 @@ hr {
 
 .cert-img {
     width: 100%;
-    height: auto;
+    height: 200px; 
+    object-fit: cover;
     border-radius: 8px;
     margin-bottom: 0.75rem;
 }
 
 .cert-title {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-light);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Modal */
@@ -938,9 +1160,24 @@ hr {
 
 .project-thumbnail {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Reduced from 280px */
+    /* Default: 1 column for mobile */
+    grid-template-columns: 1fr;
     gap: 30px;
     margin-top: 25px;
+}
+
+/* Tablets: 2 projects per row */
+@media (min-width: 768px) {
+    .project-thumbnail {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Laptops/Desktops: 3 projects per row */
+@media (min-width: 1024px) {
+    .project-thumbnail {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .thumbnail-content {
@@ -954,6 +1191,8 @@ hr {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    height: 100%;
+    justify-content: space-between;
 }
 
 .thumbnail-content:hover {
@@ -963,28 +1202,31 @@ hr {
 
 .thumbnail-content img {
     width: 100%;
-    height: auto;
-    max-height: 200px;
-    object-fit: contain;
+    height: 180px; 
+    object-fit: cover;
     display: block;
     border-radius: 8px;
+    margin-bottom: 1rem;
 }
 
 .thumbnail-content h3 {
-    margin: 15px 0 10px;
+    margin: 0 0 10px 0;
     font-size: 1.1rem;
     font-weight: 600;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .project-actions {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: auto;
     margin-bottom: 5px;
+    width: 100%;
 }
-
-
 
 #contact form {
     width: 100%;
